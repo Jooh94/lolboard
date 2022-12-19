@@ -1,0 +1,68 @@
+MVC: 소프트웨어 디자인패턴
+	-더나은 업무의 분리와 향상된 관리
+		model : 정보나 데이터	[DB]
+		view : 사용자화면		[HTMl]
+		controller: 비즈니스로직/제어  [serviet]
+MVC1 : JSP
+	
+	클라이언트 ---> - VIEW	--> Model ----> DB
+		         - Controller
+		         -JSP
+	-1.구현 쉽다
+	-2.재사용성 떨어짐
+	-3.유지보수가 힘들다.
+	
+MVC2 
+	클라이언트 --->  -Controller ---> Model ---->DB
+			Servlet
+		-View
+		JSP
+	-1.구조 구현 복잡
+	-2.재사용성 뛰어남
+	-3.유지보수 편하다
+	-4.현재 프레임워크에서 많이 사용되고 있다.[스프링]
+
+Spring MVC2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-PPT
+DTO vs DAO vs VO
+1.DTO:(Data Transfer Object) : 이동객체 [서로다른 계층(레이어)간]
+2.DAO ( Data Access OBject) : 
+3.VO(Values Object)
+4.Entity: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
