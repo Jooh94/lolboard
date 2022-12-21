@@ -15,6 +15,9 @@
 				
 					
 			</table>
+			<div class="pagebox">
+			
+			</div>
 			<a href="lwrite.jsp">글쓰기</a>
 		
 		</div>

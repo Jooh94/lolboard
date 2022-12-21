@@ -26,9 +26,11 @@ public class BoardDao extends Dao{
 		return false;
 	}
 	//2. 글출력
-	public ArrayList<BoardDto>getlist() {
+	public ArrayList<BoardDto>getlist(int startrow, int listsize) {
 		ArrayList<BoardDto> list = new ArrayList<>();
-		String sql = "select * from lboard";
+		String sql = "select * from lboard "
+				+ " order by "
+				+ " bdate desc limit "+startrow+","+listsize ;
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -67,10 +69,12 @@ public class BoardDao extends Dao{
 	}
 	
 	
-	//글삭제
+	// 게시물 삭제
 	public boolean delete (int bno ,String bpassword) {
-	String sql ="delete from lboard "
-			+ " where bno = and bpassword ="+bno+"+"+bpassword;
+//		System.out.println(" bno : " + bno );
+//		System.out.println(" bpassword : " + bpassword );
+		
+	String sql = "delete from lboard  where bno = "+bno+" and bpassword = '"+bpassword+"'";
 			
 //			"delete from lboard "
 //			+ " where  bno="+bno+"and where bpassword"+bpassword;
@@ -85,14 +89,71 @@ public class BoardDao extends Dao{
 //					+ " where bpassword="+bpassword;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.executeUpdate(); return true;
-		} catch (Exception e) {System.out.println(e);}
+			int count = ps.executeUpdate();
+			if( count >= 1 ) return true;	// delete sql 는 0개를 삭제해도 true 이다... 그래서 삭제 개수를 세야한다..
+			else return false;
+		} catch (Exception e) {System.out.println("삭제기능"+e);}
 		return false;
 		
-		
-		
-				
 	}
+	
+	// 게시물 수정 권한 비밀번호 검증 여부 확인
+		// java -- dao[작성] --> db
+		// 검증 요청 ?? 1.select  2.insert 3.update 4.delete 
+		// 
+	public boolean upword(int bno, String bpassword) {
+//	System.out.println(" bno : " + bno );
+//	System.out.println(" bpassword : " + bpassword );		
+		String sql = "select * from lboard where bno = ? and bpassword = ?";
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, bno);
+			ps.setString(2, bpassword);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				return true;
+			}
+		} catch (Exception e) {System.out.println("수정비밀번호"+e);}
+		return false;
+	}
+	
+	
+	// 게시물 수정
+	public boolean bupdate(int bno, String btitle,String bcontent,String bfile) {
+		
+//		System.out.println("1"+bno);
+//		System.out.println("2"+btitle);
+//		System.out.println("3"+bcontent);
+//		System.out.println("4"+bfile);
+		
+		
+	String sql = "update lboard set btitle =? ,"
+			+ " bcontent=? , bfile =? "
+			+ " where bno = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, btitle);
+			ps.setString(2, bcontent);
+			ps.setString(3, bfile);
+			ps.setInt(4, bno);
+			ps.executeUpdate(); return true;
+		} catch (Exception e) {System.out.println("수정하기"+e);}		
+			return false;
+	}
+	
+	
+	//게시물 수
+	public int gettotalsize() {
+		String sql ="select count(*) from lboard";
+		try {
+			ps = con.prepareStatement(sql);
+			rs= ps.executeQuery();
+			if(rs.next()) return rs.getInt(1);
+			
+		} catch (Exception e) {System.out.println(e);} return 0;
+		
+	}
+	
 	
 	
 }

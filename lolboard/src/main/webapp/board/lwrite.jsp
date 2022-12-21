@@ -14,7 +14,7 @@
 					제목 : <input type="text" name="btitle" >  <br>
 					내용 : <input type="text" name="bcontent" ><br>
 					첨부파일 : <input type="file" name="bfile"> <br>
-					비밀번호 : <input type="text" name="bpassword"> <br>
+					비밀번호 : <input type="text" name="bpassword" > <br>
 					<button type="button" onclick="lwrite()">쓰기</button>
 				</form>
 		</div>

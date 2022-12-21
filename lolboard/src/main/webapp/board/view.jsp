@@ -10,6 +10,7 @@
 
 		<div class="webbox">
 			<h3> 글 조회 </h3>
+			<form>
 			<table>
 				<tr> <td>번호</td> <td class="bno"> 		</td></tr>
 				<tr> <td>제목</td> <td class="btitle"> 	</td></tr>
@@ -20,9 +21,8 @@
 			<div class="btnbox">
 			<a href="llist.jsp">글목록</a>
 			<a href="lwrite.jsp">글쓰기</a>
-			<button >수정</button><input type="text">
 			</div>
-			
+			</form>
 			
 			
 		</div>
