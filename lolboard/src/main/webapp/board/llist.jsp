@@ -12,11 +12,16 @@
 			
 			<h3>글목록 </h3>
 			<table class="btable">
-				
 					
 			</table>
-			<div class="pagebox">
-			
+			<div class="pagebox"> </div> <!-- 페이징 -->
+			<div> <!-- 검색 -->
+				<select class="key">
+					<option value="btitle">제목</option>
+					<option value="bcontent" >내용</option>
+				</select>
+				<input class="keyword" type="text" placeholder="검색어">
+				<button type="button" onclick="bsearch()">검색</button>
 			</div>
 			<a href="lwrite.jsp">글쓰기</a>
 		

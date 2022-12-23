@@ -27,6 +27,14 @@ public class list extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		/// 검색처리
+		String key = request.getParameter("key");
+		String keyword = request.getParameter("keyword");
+//		System.out.println(key);
+//		System.out.println(keyword);
+		
+		
 		
 		//1.페이지당 게시물수
 		int listsize =Integer.parseInt( request.getParameter("listsize"));

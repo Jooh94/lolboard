@@ -1,10 +1,24 @@
-
-
 let pageinfo= {
-	listsize :3,
-	page : 1
+	listsize :4, //게시물 표시 개수
+	page : 1,	//현재 페이지 번호
+	key:'',		//검색 키
+	keyword:''	//검색 키워드
 	
 }
+//검색 처리
+
+function bsearch(){
+	let key = document.querySelector('.key').value
+	let keyword = document.querySelector('.keyword').value
+	
+	pageinfo.key = key
+	pageinfo.keyword = keyword
+	list(1)
+}
+
+
+
+
 
 list(1)
 function list(page){
@@ -39,15 +53,16 @@ function list(page){
 			let pagehtml ='';
 			
 				//2이전버튼
-				pagehtml += '<button onclick="list('+(page-1)+')">이전</button>';    
-				
+				if(page== 1)pagehtml += '<button onclick="list('+(page)+')">이전</button>';    
+				else{pagehtml += '<button onclick="list('+(page-1)+')">이전</button>';}				
 				//4. 페이지번호 버튼
 				for(let page = boards.startbtn; page<= boards.endbtn; page++){
 					pagehtml += '<button type="button" onclick="list('+page+')">'+page+'</button>'
 				}
 				
 				//3. 다음버튼
-				pagehtml +='<button onclick=list('+(page+1)+')>다음</button>'; 
+				if(page == boards.totalpage){pagehtml +='<button onclick=list('+(page)+')>다음</button>';}
+				else{pagehtml +='<button onclick=list('+(page+1)+')>다음</button>'; }
 				
 			document.querySelector('.pagebox').innerHTML=pagehtml
 		}
