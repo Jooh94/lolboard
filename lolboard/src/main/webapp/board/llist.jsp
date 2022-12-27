@@ -11,6 +11,15 @@
 		<div class="webbox">
 			
 			<h3>글목록 </h3>
+			<div>게시물수 : <span class="totalsize"></span> </div>
+			<div>
+				<select class="listsize" onchange="blistsize()">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+				</select>
+			</div>
 			<table class="btable">
 					
 			</table>

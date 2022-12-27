@@ -40,7 +40,7 @@ public class list extends HttpServlet {
 		int listsize =Integer.parseInt( request.getParameter("listsize"));
 		//System.out.println(listsize); = 3나왔씀 왜냐 3으로 지정했으니깐
 		//2.전체 게시물수
-		int totalsize = BoardDao.getInstance().gettotalsize();
+		int totalsize = BoardDao.getInstance().gettotalsize(key,keyword);
 		//3. 전체 페이지수 계산
 		int totalpage =0;
 		if(totalsize % listsize ==0) totalpage = totalsize /listsize;
@@ -62,7 +62,7 @@ public class list extends HttpServlet {
 		JSONObject boards = new JSONObject();
 		
 	//2. db
-		ArrayList<BoardDto> list = BoardDao.getInstance().getlist(startrow ,listsize);
+		ArrayList<BoardDto> list = BoardDao.getInstance().getlist(startrow ,listsize,key,keyword);
 		JSONArray array = new JSONArray();
 		for( int i=0; i<list.size(); i++) {
 			JSONObject object = new JSONObject();
@@ -75,11 +75,12 @@ public class list extends HttpServlet {
 			array.add(object);
 		}	
 		
-		//4. 페이징 담아준다
-		boards.put("totalpage", totalpage);
-		boards.put("data", array);
-		boards.put("startbtn",startbtn);
-		boards.put("endbtn", endbtn);
+		//4. 
+		boards.put("totalpage", totalpage); //전체 페이지수
+		boards.put("data", array); //게시물리스트
+		boards.put("startbtn",startbtn); //버튼 시작번호
+		boards.put("endbtn", endbtn);   //버튼 끝번호
+		boards.put("totalsize", totalsize); //게시물 수
 		
 	response.setCharacterEncoding("UTF-8");
 	response.getWriter().print(boards);

@@ -1,21 +1,24 @@
 let pageinfo= {
-	listsize :4, //게시물 표시 개수
+	listsize :5, //게시물 표시 개수
 	page : 1,	//현재 페이지 번호
 	key:'',		//검색 키
-	keyword:''	//검색 키워드
+	keyword:'',	//검색 키워드
 	
 }
-//검색 처리
 
-function bsearch(){
-	let key = document.querySelector('.key').value
-	let keyword = document.querySelector('.keyword').value
-	
-	pageinfo.key = key
-	pageinfo.keyword = keyword
+//
+function blistsize(){
+	pageinfo.listsize = document.querySelector('.listsize').value
 	list(1)
 }
 
+
+//검색 처리
+function bsearch(){
+	pageinfo.key = document.querySelector('.key').value
+	pageinfo.keyword = document.querySelector('.keyword').value
+	list(1)
+}
 
 
 
@@ -65,11 +68,12 @@ function list(page){
 				else{pagehtml +='<button onclick=list('+(page+1)+')>다음</button>'; }
 				
 			document.querySelector('.pagebox').innerHTML=pagehtml
+			// 전체vs검색된 게시물수 표시
+			document.querySelector('.totalsize').innerHTML=boards.totalsize	
+		
 		}
-		
-		
 	})
-
+  
 }   
 
 function viewload(bno){

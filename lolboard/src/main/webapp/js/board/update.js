@@ -35,7 +35,7 @@ function bupdate1(){
 			contentType:false,
 			processData:false,
 			success:function(re){
-				if(re==='true'){alert('수정성공');
+				if(re == 'true'){alert('수정성공');
 				location.href='view.jsp'}
 				else{alert('수정실패')}
 			}	

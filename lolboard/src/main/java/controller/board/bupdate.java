@@ -55,7 +55,7 @@ public class bupdate extends HttpServlet {
 		//3. 요청
 		String btitle = multi.getParameter("btitle");
 		String bcontent = multi.getParameter("bcontent");
-		String bfile = multi.getFilesystemName("bfile");
+		String bfile = multi.getFilesystemName("newfile");
 			
 			//1. 수정시 새로운 첨부파일 등록시 [기존]
 		//수정할 게시물의 번호 갖고 있어야한다.

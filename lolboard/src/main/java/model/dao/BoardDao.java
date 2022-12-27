@@ -26,11 +26,21 @@ public class BoardDao extends Dao{
 		return false;
 	}
 	//2. 글출력
-	public ArrayList<BoardDto>getlist(int startrow, int listsize) {
+	public ArrayList<BoardDto>getlist(int startrow, int listsize ,String key, String keyword) {
 		ArrayList<BoardDto> list = new ArrayList<>();
-		String sql = "select * from lboard "
+		String sql= "";
+		if(!key.equals("") && !keyword.equals("")) {
+			sql="select * from lboard "
+				+ " where bno  and "+key+" like '%"+keyword+"%'"
+				+ " order by bdate desc "
+				+ " limit  "+startrow+","+listsize;
+
+		}else {
+		
+		sql = "select * from lboard "
 				+ " order by "
 				+ " bdate desc limit "+startrow+","+listsize ;
+		}
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -121,15 +131,15 @@ public class BoardDao extends Dao{
 	// 게시물 수정
 	public boolean bupdate(int bno, String btitle,String bcontent,String bfile) {
 		
-//		System.out.println("1"+bno);
-//		System.out.println("2"+btitle);
-//		System.out.println("3"+bcontent);
-//		System.out.println("4"+bfile);
+		System.out.println("1:"+bno);
+		System.out.println("2:"+btitle);
+		System.out.println("3:"+bcontent);
+		System.out.println("4:"+bfile);
 		
 		
 	String sql = "update lboard set btitle =? ,"
-			+ " bcontent=? , bfile =? "
-			+ " where bno = ?";
+			+ " bcontent = ? , bfile = ? "
+			+ " where bno = ? ";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, btitle);
@@ -143,8 +153,14 @@ public class BoardDao extends Dao{
 	
 	
 	//게시물 수
-	public int gettotalsize() {
-		String sql ="select count(*) from lboard";
+	public int gettotalsize(String key, String keyword) {
+		String sql = "";
+		//검색이 있을경우
+		if(!key.equals("")&& !keyword.equals("")) {
+		 sql ="select count(*) from lboard where "+key+" like '%"+keyword+"%'";
+		}else {		
+		 sql ="select count(*) from lboard";
+		}
 		try {
 			ps = con.prepareStatement(sql);
 			rs= ps.executeQuery();
