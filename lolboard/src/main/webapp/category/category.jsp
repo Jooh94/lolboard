@@ -7,15 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-		
-		<div class="webbox">
+
+
+
+				<div class="webbox">
 			
 			<h3>글목록 </h3>
-			<div class="getctegory"> <!-- 카테고리 -->
-				
-			</div>	
+		 	카테고리:<button type="button" onclick="category()">카테고리추가</button>
 			<div>게시물수 : <span class="totalsize"></span> </div>
-			
 			<div>
 				<select class="listsize" onchange="blistsize()">
 					<option value="5">5</option>
@@ -24,7 +23,6 @@
 					<option value="20">20</option>
 				</select>
 			</div>
-
 			<table class="btable">
 					
 			</table>
@@ -38,9 +36,7 @@
 				<button type="button" onclick="bsearch()">검색</button>
 			</div>
 			<a href="lwrite.jsp">글쓰기</a>
-		
-		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" src="../js/board/list.js"></script>		
+			</div>
+
 </body>
 </html>

@@ -62,20 +62,14 @@ public class write extends HttpServlet {
 		String bcontent= multi.getParameter("bcontent");
 		String bfile = multi.getFilesystemName("bfile");
 		String bpassword = multi.getParameter("bpassword");
-		
+	       
+        if(bpassword == null) { response.getWriter().print("pwfalse");  }
+        
 		//db 처리 다시
          boolean result=
          BoardDao.getInstance().write(btitle, bcontent, bfile, bpassword);
-       
-         if(bpassword == null) {
-        	 
-         }
-         
+
          response.getWriter().print(result);
-		
-		
-		
-		
 		
 	} 
 

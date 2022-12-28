@@ -85,3 +85,37 @@ function viewload(bno){
 		}	
 	})
 }
+
+//카테고리 호출 메소드
+getcategory()
+function getcategory(){
+	$.ajax({
+		url:"/lolboard/board/category",
+		type:"get",
+		success:function(re){
+			let json= JSON.parse(re)
+			let html = ''
+			for(let i = 0; i<json.length; i++){
+				let category = json[i];
+				html += '<button type="button" class="cno" onclick="'+categoryload.cno+'" value='+category.cno+'>'+category.cname+'</button>';
+			}
+			document.querySelector(".getctegory").innerHTML = html;
+		}
+		
+	})	
+	
+}
+
+function categoryload(cno){
+	alert('cno')
+	$.ajax({
+		
+		
+		
+	})
+	
+	
+}
+
+
+

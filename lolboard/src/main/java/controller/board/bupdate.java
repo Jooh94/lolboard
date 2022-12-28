@@ -60,8 +60,10 @@ public class bupdate extends HttpServlet {
 			//1. 수정시 새로운 첨부파일 등록시 [기존]
 		//수정할 게시물의 번호 갖고 있어야한다.
 		int bno =(Integer) request.getSession().getAttribute("bno");
+		
 		// 수정전 게시물 정보
 		BoardDto dto = BoardDao.getInstance().getboard(bno); //수정 되기전 게시물 정보 호출
+		//3.보드dto 클래스	//2그래서 내가설정한 dto라는 변수에 넣어주다 //1보드다오 안에 가져오다 갯보드 비넘버
 		
 		//* 기존첨부파일 변경 여부 판단
 		boolean bfilechange = false;
